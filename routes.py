@@ -17,10 +17,14 @@ def home():
 def about():
     return render_template( 'about.html' )
 
-@app.route("/signup")
+@app.route("/signup", methods = [ 'GET', 'POST' ])
 def signup():
     form = SignupForm()
-    return render_template('signup.html', form=form)
+
+    if request.method == 'POST': 
+        return 'success'
+    elif request.method == 'GET'
+        return render_template('signup.html', form=form)
 
 if __name__ == "__main__":
     app.run()
