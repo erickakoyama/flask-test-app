@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+  <main class="container">
+    <div class="row">
+      <div class="col m6 s12">
+        <p>logo</p>
+      </div>
+      <div class="col m6 s12">
+        <h2>Login</h2>
+        <form method="POST" action="/login">
+          {{ form.hidden_tag() }}
+
+          <div class="form-group">
+            {{ form.email.label }}
+            {% if form.email.errors %}
+              {% for error in form.email.errors %}
+                <p class="error-message">{{error}}</p>
+              {% endfor %}
+            {% endif %}
+            {{ form.email }}
+          </div>
+
+          <div class="form-group">
+            {{ form.password.label }}
+            {% if form.password.errors %}
+              {% for error in form.password.errors %}
+                <p class="error-message">{{error}}</p>
+              {% endfor %}
+            {% endif %}
+            {{ form.password }}
+          </div>
+
+          {{ form.submit( class="waves-effect waves-light btn blue lighten-2" ) }}
+
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock %}

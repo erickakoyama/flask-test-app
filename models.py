@@ -1,4 +1,4 @@
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from werkzeug import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
@@ -22,3 +22,26 @@ class User(db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.pwdhash, password)
+
+
+class Gem(db.Model):
+    __tablename__ = 'gems'
+    uid = db.Column(db.Integer, primary_key = True)
+    color = db.Column(db.String(100))
+    luster = db.Column(db.String(100))
+    fracture = db.Column(db.String(100))
+    streak = db.Column(db.String(100))
+    mohs = db.Column(db.Float())
+    ri = db.Column(db.Float())
+    specific_gravity = db.Column(db.Float())
+    fluorescent = db.Column(db.Boolean())
+
+    def __init__(self, color, luster, fracture, streak, mohs, ri, specific_gravity, fluorescent):
+        self.color = color
+        self.luster = luster
+        self.fracture = fracture
+        self.streak = streak
+        self.mohs = mohs
+        self.ri = ri
+        self.specific_gravity = specific_gravity
+        self.fluorescent = fluorescent
